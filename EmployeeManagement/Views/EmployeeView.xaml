@@ -1,0 +1,36 @@
+﻿<Window x:Class="EmployeeManagement.Views.EmployeeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeeManagement.Views"
+        mc:Ignorable="d"
+        Title="EmployeeView" Height="450" Width="800">
+    <Grid>
+        <ListView HorizontalAlignment="Center" Height="414" VerticalAlignment="Center" Width="780" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="120">
+                        <GridViewColumnHeader Content="Фамилия"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="120">
+                        <GridViewColumnHeader Content="Имя"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="50">
+                        <GridViewColumnHeader Content="Возраст"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="auto">
+                        <GridViewColumnHeader Content="Компания"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="auto">
+                        <GridViewColumnHeader Content="Должность"></GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn Width="auto">
+                        <GridViewColumnHeader Content="Город"></GridViewColumnHeader>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+    </Grid>
+</Window>
