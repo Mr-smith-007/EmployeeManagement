@@ -2,27 +2,69 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace EmployeeManagement.ViewModels
 {
-    public class EmployeesViewModel
+    public class EmployeesViewModel : INotifyPropertyChanged
     {
-        private EmployeeRepository _repos { get; }
-        public EmployeesViewModel() 
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string name = null)
         {
-            _repos = new EmployeeRepository();
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
+        private EmployeeRepository _employeeRepository;
+        public EmployeesViewModel()
+        {
+            _employeeRepository = new EmployeeRepository();
+            FillListView();
+        }
+
+        private ObservableCollection<Employee> _employees;
         public ObservableCollection<Employee> Employees
         {
             get
             {
-                return new ObservableCollection<Employee>
-                    (this._repos.GetAll());
+                return _employees;
             }
+            set
+            {
+                _employees = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private string _filter;
+        public string Filter
+        {
+            get
+            {
+                return _filter;
+            }
+            set
+            {
+                _filter = value;
+                FillListView();
+            }
+        }
+
+        private void FillListView()
+        {
+            if (!String.IsNullOrEmpty(_filter))
+            {
+                _employees = new ObservableCollection<Employee>(
+                  _employeeRepository.GetAll()
+                  .Where(v => v.FirstName.Contains(_filter)));
+            }
+            else
+                _employees = new ObservableCollection<Employee>(
+                  _employeeRepository.GetAll());
         }
     }
 }

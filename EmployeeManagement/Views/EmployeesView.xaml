@@ -15,7 +15,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees}" HorizontalAlignment="Center" Height="295" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" >
+        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Center" Height="295" VerticalAlignment="Center" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.494,0.367" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}" >
@@ -39,6 +39,7 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <TextBox Text="{Binding Filter,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="26" Margin="33,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="137"/>
 
     </Grid>
 </Window>
