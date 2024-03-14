@@ -10,9 +10,12 @@
     <Window.DataContext>
         <vm:EmployeesViewModel></vm:EmployeesViewModel>
     </Window.DataContext>
-    
+
     <Grid>
-        <ListView ItemsSource="{Binding Employees}" HorizontalAlignment="Center" Height="295" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" >
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees}" HorizontalAlignment="Center" Height="295" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" >
             <ListView.View>
                 <GridView>
                     <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}" >
