@@ -4,28 +4,33 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:EmployeeManagement.Views"
+        xmlns:vm="clr-namespace:EmployeeManagement.ViewModels"
         mc:Ignorable="d"
         Title="EmployeeView" Height="450" Width="800">
+    <Window.DataContext>
+        <vm:EmployeesViewModel></vm:EmployeesViewModel>
+    </Window.DataContext>
+    
     <Grid>
-        <ListView HorizontalAlignment="Center" Height="414" VerticalAlignment="Center" Width="780" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView ItemsSource="{Binding Employees}" HorizontalAlignment="Center" Height="295" VerticalAlignment="Top" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Width="120">
+                    <GridViewColumn  Width="120" DisplayMemberBinding="{Binding LastName}" >
                         <GridViewColumnHeader Content="Фамилия"></GridViewColumnHeader>
                     </GridViewColumn>
-                    <GridViewColumn Width="120">
+                    <GridViewColumn Width="120" DisplayMemberBinding="{Binding FirstName}">
                         <GridViewColumnHeader Content="Имя"></GridViewColumnHeader>
                     </GridViewColumn>
-                    <GridViewColumn Width="50">
+                    <GridViewColumn Width="50" DisplayMemberBinding="{Binding Age}">
                         <GridViewColumnHeader Content="Возраст"></GridViewColumnHeader>
                     </GridViewColumn>
-                    <GridViewColumn Width="auto">
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding CompanyName}">
                         <GridViewColumnHeader Content="Компания"></GridViewColumnHeader>
                     </GridViewColumn>
-                    <GridViewColumn Width="auto">
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding Position}">
                         <GridViewColumnHeader Content="Должность"></GridViewColumnHeader>
                     </GridViewColumn>
-                    <GridViewColumn Width="auto">
+                    <GridViewColumn Width="auto" DisplayMemberBinding="{Binding CityName}">
                         <GridViewColumnHeader Content="Город"></GridViewColumnHeader>
                     </GridViewColumn>
                 </GridView>
