@@ -20,6 +20,7 @@ namespace EmployeeManagement
 
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
             unityContainer.RegisterType<IEmployeesViewModel, EmployeesViewModel>();
+            unityContainer.RegisterType<IEmployeeViewModel, EmployeeViewModel>();
 
             unityContainer.Resolve<EmployeesView>().Show();
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Models
 {
-    internal class EmployeeViewModel : IEmployeeViewModel
+    public class EmployeeViewModel : IEmployeeViewModel
     {
         private Employee _employee;
         public Employee Employee

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.Interfaces
 {
-    internal interface IEmployeeViewModel
+    public interface IEmployeeViewModel
     {
         Employee Employee { get; set; }
     }

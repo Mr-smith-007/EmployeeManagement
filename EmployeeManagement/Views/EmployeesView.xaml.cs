@@ -21,10 +21,15 @@ namespace EmployeeManagement.Views
     /// </summary>
     public partial class EmployeesView : Window
     {
-        public EmployeesView(IEmployeesViewModel employeesViewModel)
+        IEmployeeViewModel _employeeViewModel;
+        IEmployeesViewModel _employeesViewModel;
+
+        public EmployeesView(IEmployeesViewModel employeesViewModel, IEmployeeViewModel employeeViewModel)
         {
+            _employeeViewModel = employeeViewModel;
+            _employeesViewModel = employeesViewModel;
             InitializeComponent();
-            DataContext = employeesViewModel;
+            DataContext = _employeesViewModel;
         }
 
         private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -38,7 +43,12 @@ namespace EmployeeManagement.Views
 
             var employee = item as Employee;
 
-            MessageBox.Show(employee.FirstName);               
+            _employeeViewModel.Employee = employee;
+
+            var employeView = new EmployeeView(_employeeViewModel);
+
+            employeView.Show();
         }
+        
     }
 }
