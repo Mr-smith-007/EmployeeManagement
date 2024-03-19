@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.ViewModels
 {
-    public class EmployeesViewModel : INotifyPropertyChanged, IEmployeesViewModel
+    class EmployeesViewModel : INotifyPropertyChanged, IEmployeesViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -53,6 +53,7 @@ namespace EmployeeManagement.ViewModels
             {
                 _filter = value;
                 FillListView();
+                FillFilterMessage();
             }
         }
         private string _filterMessage;

@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using EmployeeManagement.Interfaces;
+using EmployeeManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,9 +21,10 @@ namespace EmployeeManagement.Views
     /// </summary>
     public partial class EmployeesView : Window
     {
-        public EmployeesView()
+        public EmployeesView(IEmployeesViewModel employeesViewModel)
         {
             InitializeComponent();
+            DataContext = employeesViewModel;
         }
 
         private void ListView_PreviewMouseDoubleClick(object sender, MouseButtonEventArgs e)
