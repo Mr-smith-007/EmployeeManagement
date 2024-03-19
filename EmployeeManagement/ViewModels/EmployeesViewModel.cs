@@ -1,4 +1,5 @@
-﻿using EmployeeManagement.Models;
+﻿using EmployeeManagement.Interfaces;
+using EmployeeManagement.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement.ViewModels
 {
-    public class EmployeesViewModel : INotifyPropertyChanged
+    public class EmployeesViewModel : INotifyPropertyChanged, IEmployeesViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -19,11 +20,12 @@ namespace EmployeeManagement.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
 
-        private EmployeeRepository _employeeRepository;
-        public EmployeesViewModel()
+        private IEmployeeRepository _employeeRepository;
+        public EmployeesViewModel(IEmployeeRepository employeeRepository)
         {
-            _employeeRepository = new EmployeeRepository();
+            _employeeRepository = employeeRepository;
             FillListView();
+            FillFilterMessage();
         }
 
         private ObservableCollection<Employee> _employees;
@@ -53,18 +55,43 @@ namespace EmployeeManagement.ViewModels
                 FillListView();
             }
         }
+        private string _filterMessage;
+        public string FilterMessage
+        {
+            get
+            {
+                return _filterMessage;
+            }
+            set
+            {
+                _filterMessage = value;
+                OnPropertyChanged();
+            }
+        }
 
         private void FillListView()
         {
             if (!String.IsNullOrEmpty(_filter))
             {
-                _employees = new ObservableCollection<Employee>(
+                Employees = new ObservableCollection<Employee>(
                   _employeeRepository.GetAll()
                   .Where(v => v.FirstName.Contains(_filter)));
             }
             else
-                _employees = new ObservableCollection<Employee>(
+                Employees = new ObservableCollection<Employee>(
                   _employeeRepository.GetAll());
+        }
+
+        private void FillFilterMessage()
+        {
+            if (!String.IsNullOrEmpty(_filter))
+            {
+                FilterMessage = "По вашему запросу найдено: " + Employees.Count().ToString();
+            }
+            else
+            {
+                FilterMessage = "Введите данные для поиска";
+            }
         }
     }
 }

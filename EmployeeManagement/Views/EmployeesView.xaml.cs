@@ -18,9 +18,9 @@ namespace EmployeeManagement.Views
     /// <summary>
     /// Логика взаимодействия для EmployeeView.xaml
     /// </summary>
-    public partial class EmployeeView : Window
+    public partial class EmployeesView : Window
     {
-        public EmployeeView()
+        public EmployeesView()
         {
             InitializeComponent();
         }

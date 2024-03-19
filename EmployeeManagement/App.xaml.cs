@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using EmployeeManagement.Interfaces;
+using EmployeeManagement.Models;
+using EmployeeManagement.Views;
 using System.Windows;
+using Unity;
 
 namespace EmployeeManagement
 {
@@ -13,5 +11,16 @@ namespace EmployeeManagement
     /// </summary>
     public partial class App : Application
     {
+        protected override void OnStartup(StartupEventArgs e)
+        {
+            base.OnStartup(e);
+
+            IUnityContainer unityContainer = new UnityContainer();
+
+            unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
+            unityContainer.RegisterType<IEmployeesViewModel, IEmployeesViewModel>();
+
+            unityContainer.Resolve<EmployeesView>().Show();
+        }
     }
 }
