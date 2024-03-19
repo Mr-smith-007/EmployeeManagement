@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement.Interfaces;
 using EmployeeManagement.Models;
+using EmployeeManagement.ViewModels;
 using EmployeeManagement.Views;
 using System.Windows;
 using Unity;
@@ -18,7 +19,7 @@ namespace EmployeeManagement
             IUnityContainer unityContainer = new UnityContainer();
 
             unityContainer.RegisterType<IEmployeeRepository, EmployeeRepository>();
-            unityContainer.RegisterType<IEmployeesViewModel, IEmployeesViewModel>();
+            unityContainer.RegisterType<IEmployeesViewModel, EmployeesViewModel>();
 
             unityContainer.Resolve<EmployeesView>().Show();
         }
