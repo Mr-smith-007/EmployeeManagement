@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:EmployeeManagement.Views"
         xmlns:vm="clr-namespace:EmployeeManagement.ViewModels"
         mc:Ignorable="d"
-        Title="EmployeesView" Height="450" Width="800">
+       Title="Управление сотрудниками" Height="450" Width="600" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
     
     <Grid>        
         <ListView PreviewMouseDoubleClick="ListView_PreviewMouseDoubleClick" ItemsSource="{Binding Employees, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="295" VerticalAlignment="Center" Width="800" d:ItemsSource="{d:SampleData ItemCount=5}" RenderTransformOrigin="0.494,0.367" Grid.ColumnSpan="2" >
@@ -34,6 +34,6 @@
             </ListView.View>
         </ListView>
         <TextBox Text="{Binding Filter,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Height="26" Margin="33,27,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="137"/>
-
+        <TextBlock HorizontalAlignment="Left" Margin="172,15,0,0" TextWrapping="Wrap" Text="{Binding FilterMessage}" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>
