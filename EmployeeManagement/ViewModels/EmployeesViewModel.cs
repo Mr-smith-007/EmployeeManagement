@@ -76,7 +76,7 @@ namespace EmployeeManagement.ViewModels
             {
                 Employees = new ObservableCollection<Employee>(
                   _employeeRepository.GetAll()
-                  .Where(v => v.FirstName.Contains(_filter)));
+                  .Where(v => v.FirstName.ToLower().Contains(_filter.ToLower())));
             }
             else
                 Employees = new ObservableCollection<Employee>(
